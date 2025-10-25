@@ -23,7 +23,7 @@ def show_books_table_description():
                 SELECT COLUMN_NAME, COLUMN_TYPE
                 FROM INFORMATION_SCHEMA.COLUMNS
                 WHERE TABLE_SCHEMA = 'alx_book_store'
-                AND TABLE_NAME = 'books';
+                AND TABLE_NAME = 'Books';
             """
             cursor.execute(query)
             results = cursor.fetchall()
@@ -47,3 +47,4 @@ def show_books_table_description():
 
 if __name__ == "__main__":
     show_books_table_description()
+
