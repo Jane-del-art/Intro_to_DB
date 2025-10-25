@@ -18,16 +18,22 @@ def show_books_table_description():
 
             cursor = connection.cursor()
 
-            # Equivalent of the SQL script
-            cursor.execute("USE alx_book_store;")
-            cursor.execute("SHOW CREATE TABLE books;")
+            # Query to get table structure using INFORMATION_SCHEMA
+            query = """
+                SELECT COLUMN_NAME, COLUMN_TYPE
+                FROM INFORMATION_SCHEMA.COLUMNS
+                WHERE TABLE_SCHEMA = 'alx_book_store'
+                AND TABLE_NAME = 'books';
+            """
+            cursor.execute(query)
+            results = cursor.fetchall()
 
-            result = cursor.fetchone()
-            if result:
-                print("\n Full Description of 'books' Table:\n")
-                print(result[1])
+            print("\n Full description of 'books' table:")
+            if results:
+                for column_name, column_type in results:
+                    print(f"- {column_name}: {column_type}")
             else:
-                print(" No description found for 'books' table.")
+                print(" No columns found for 'books' table.")
 
     except mysql.connector.Error as err:
         print(f"MySQL Error: {err}")
