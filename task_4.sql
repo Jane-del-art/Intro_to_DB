@@ -14,7 +14,7 @@ def show_books_table_description():
         )
 
         if connection.is_connected():
-            print("✅ Connected to MySQL server and using database 'alx_book_store'.")
+            print(" Connected to MySQL server and using database 'alx_book_store'.")
 
             cursor = connection.cursor()
 
@@ -24,10 +24,10 @@ def show_books_table_description():
 
             result = cursor.fetchone()
             if result:
-                print("\n📘 Full Description of 'books' Table:\n")
+                print("\n Full Description of 'books' Table:\n")
                 print(result[1])
             else:
-                print("⚠️ No description found for 'books' table.")
+                print(" No description found for 'books' table.")
 
     except mysql.connector.Error as err:
         print(f"MySQL Error: {err}")
@@ -37,7 +37,7 @@ def show_books_table_description():
             cursor.close()
         if connection and connection.is_connected():
             connection.close()
-            print("\n🔒 MySQL connection closed.")
+            print("\n MySQL connection closed.")
 
 if __name__ == "__main__":
     show_books_table_description()
